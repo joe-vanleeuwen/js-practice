@@ -4,65 +4,76 @@
 <head>
 	<title></title>
 	<link rel="stylesheet" type="text/css" href="styles.css">
+	<link rel="stylesheet" type="text/css" href="modal.css">
 </head>
 <body>
-	
-	<div class="container">
-		<div class="form">
-			<input class="form-name one" placeholder="name">
-			<input class="form-email two" placeholder="email">	
-			<input class="form-cell-number three" placeholder="cell number">
-				
-			<input class="form-occupation four" placeholder="hobby"><input class="form-hobby five" placeholder="occupation">
-			<input class="form-personal-acheivements six" placeholder="personal acheivements">	
-			<input class="form-bucket-list seven" placeholder="bucket list">	
-		</div>
-		<div class="profile">
-			<div class="profile-name">
-				<span class="name first-letters one"></span
-				><span class="name last-letter one"></span>
+	<div class="backdrop">
+		<div class="container">
+			<div class="form">
+				<input class="form-name" id="one" placeholder="name">
+				<input class="form-email" id="two" placeholder="email">	
+				<input class="form-cell-number" id="three" placeholder="cell number">	
+				<input class="form-occupation" id="four" placeholder="occupation">
+				<input class="form-hobby" id="five" placeholder="hobby">
+				<input class="form-personal-acheivements" id="six" placeholder="personal acheivement">	
+				<input class="form-bucket-list" id="seven" placeholder="bucket list">	
 			</div>
-			<hr>
-			<div class="profile-email">
-				<span class="type">email:</span>
-				<span class="email first-letters two"></span
-				><span class="email last-letter two"></span>
+			<div class="profile">
+				<div class="profile-name">
+					<span class="name first-letters one"></span
+					><span class="name last-letter one"></span>
+				</div>
+				<hr class="profile-hr">
+				<div class="profile-info">
+					<span class="type">email:</span>
+					<span class="email first-letters two"></span
+					><span class="email last-letter two"></span>
+				</div>
+				<div class="profile-info">
+					<span class="type">cell number:</span>
+					<span class="cell-number first-letters three"></span
+					><span class="cell-number last-letter three"></span>
+				</div>
+				<div class="profile-info">
+					<span class="type">occupation:</span>
+					<span class="occupation first-letters four"></span
+					><span class="occupation last-letter four"></span>
+				</div>
+				<div class="profile-info">
+					<span class="type">hobby:</span>
+					<span class="hobby first-letters five"></span
+					><span class="hobby last-letter five"></span>
+				</div>
+				<div class="profile-info">
+					<span class="type">personal acheivement:</span>
+					<span class="personal-acheivements first-letters six"></span
+					><span class="personal-acheivements last-letter six"></span>
+				</div>
+				<div class="profile-info">
+					<span class="type">bucket list:</span>
+					<span class="bucket-list first-letters seven"></span
+					><span class="bucket-list last-letter seven"></span>
+				</div>
 			</div>
-			<div class="profile-cell-number">
-				<span class="type">cell number:</span>
-				<span class="cell-number first-letters three"></span
-				><span class="cell-number last-letter three"></span>
+			<div class="submit">
+				<a href="#" class="rectangle-button submit-button">submit</a>
 			</div>
-			<div class="profile-occupation">
-				<span class="type">occupation:</span>
-				<span class="occupation first-letters four"></span
-				><span class="occupation last-letter four"></span>
-			</div>
-			<div class="profile-hobby">
-				<span class="type">hobby:</span>
-				<span class="hobby first-letters five"></span
-				><span class="hobby last-letter five"></span>
-			</div>
-			<div class="profile-personal-acheivements">
-				<span class="type">personal acheivement:</span>
-				<span class="personal-acheivements first-letters six"></span
-				><span class="personal-acheivements last-letter six"></span>
-			</div>
-			<div class="profile-bucket-list">
-				<span class="type">bucket list:</span>
-				<span class="bucket-list first-letters seven"></span
-				><span class="bucket-list last-letter seven"></span>
-			</div>
-		</div>
-		<div class="submit">
-			<a href="#" class="rectangle-button">submit</a>
-		</div>
 
+		</div>
+		<div class="modal"></div>
+		<div class="placement">
+			<div class="modal-box">
+				<h2 class="message-title"></h2>
+				<hr>
+				<p class="modal-message"></p>
+				<a href="#" class="rectangle-button modal-button">ok</a>
+			</div>
 
-		<script src="jquery-2.0.3.min.js"></script>
-		<script src="javascript.js"></script>
-	</div>
-	
+		</div> <!-- end .container -->
 
+	</div> <!-- end .backdrop -->
+
+	<script src="jquery-2.0.3.min.js"></script>
+	<script src="javascript.js"></script>
 </body>
 </html>

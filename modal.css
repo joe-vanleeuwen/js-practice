@@ -1,0 +1,124 @@
+.placement {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: -1;
+}
+
+.modal {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	opacity: 0;
+	background: #000;
+	z-index: -1;
+	-webkit-transition: opacity .5s ease;
+}
+
+.modal-box {
+	height: 120px;
+	width: 350px;
+	margin: 300px auto 0;
+	border-radius: 6px;
+	background: #6592A0;
+	color: #ECE0B9;
+	border: 1px solid #3E5879;
+	opacity: 0;
+	padding: 20px;
+	overflow: hidden;
+	z-index: -1;
+	position: relative;
+	text-shadow: 0 1px #5C6F86;
+	-webkit-transform: rotate(8deg);
+	-webkit-transition:	all .75s .20s ease;
+						
+}
+
+.modal-active {
+	opacity: .5;
+}
+
+.modal-box-active {
+	opacity: 1;
+	overflow: hidden;
+	-webkit-transform: scale(1.3);
+}
+
+.button {
+	height: 100px;
+	width: 100px;
+	color: white;
+	text-align: center;
+	line-height: 100px;
+	background: blue;
+	position: relative;
+	z-index: 1;
+}
+
+.index-ten {
+	z-index: 10;
+}
+
+@-webkit-keyframes modal-fade-in {
+  from {
+    z-index: -1;
+  }
+
+  to {
+  	z-index: 10;
+  }
+}
+ 
+.modal-fade-in{
+    -webkit-animation-name: modal-fade-in;
+    -webkit-animation-duration: 1s;
+}   
+
+@-webkit-keyframes modal-fade-out {
+  from {
+    z-index: 10;
+  }
+
+  to {
+  	z-index: -1;
+  }
+}
+
+.modal-fade-out{
+    -webkit-animation-name: modal-fade-out;
+    -webkit-animation-duration: 1s;
+}   
+
+.message-title {
+	margin: 0;
+}
+
+.modal-box hr {
+	height: 1px;
+	border: 0;
+	border-top: 1px solid #3E5879;
+	margin-bottom: 20px;
+}
+
+.modal-box p {
+	line-height: 22px
+}
+.rectangle-button.modal-button {
+	width: 50px;
+	height: 30px;
+	font-size: 0.75em;
+	line-height: 30px;
+	position: absolute;
+	bottom: 30px;
+	right: 20px;
+}
+
+
+
+
+
+

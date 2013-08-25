@@ -5,103 +5,94 @@ $(document).ready(function() {
 	var firstLetters = "";
 
 	function makeBold(origin) {
-		 originText = $(origin).val();	
-		 firstLetters = originText.slice(0, originText.length - 1);	 
-		 lastLetter = originText.slice(originText.length - 1);
-		$(origin + '.first-letters').text(firstLetters);
-		$(origin + '.last-letter').text(lastLetter);
+		var id = '#' + origin;
+		var klass = '.' + origin;
+
+		originText = $(id).val();	
+		firstLetters = originText.slice(0, -1);	 
+		lastLetter = originText.slice(-1);
+		// $(origin + '.first-letters').html(firstLetters + "<strong>" + lastLetter + "<strong>");
+		$(klass + '.first-letters').text(firstLetters);
+		$(klass + '.last-letter').text(lastLetter)
 	}
 
 	function makeUnBold(origin) {
-		 originText = $(origin).val();	
-		$(origin + '.first-letters').text(originText);
-		$(origin + '.last-letter').text("");
+		var id = '#' + origin;
+		var klass = '.' + origin;
+
+		originText = $(id).val();	
+		$(klass + '.first-letters').text(originText);
+		$(klass + '.last-letter').text("");
 	}
 
-	$('.one').keyup(function() {
-		 makeBold('.one');
+	$('#one, #two, #three, #four, #five, #six, #seven')
+		.keyup(function() {
+			makeBold($(this).attr('id'));
  	})
 
-	$('.one').focusout(function() {
- 		makeUnBold('.one');
- 	})
+	$('#one, #two, #three, #four, #five, #six, #seven')
+		.focusout(function() {
+	 		makeUnBold($(this).attr('id'));
+	 })
 
- 	$('.one').focusin(function() {
- 		makeBold('.one');
- 	})
+ 	$('#one, #two, #three, #four, #five, #six, #seven')
+	 	.focusin(function() {
+	 		$(this).removeClass('make-red');
+	 		makeBold($(this).attr('id'));
+	 })
 
- 	$('.two').keyup(function() {
-		 makeBold('.two');
- 	})
+	// turn modal on
 
-	$('.two').focusout(function() {
- 		makeUnBold('.two');
- 	})
+	function modalOn() {
+		$('.modal, .modal-box, .placement').removeClass('modal-fade-out');
+    	$('.modal, .modal-box, .placement').addClass('modal-fade-in');
+		$('.modal').toggleClass('modal-active');
+		$('.modal-box').toggleClass('modal-box-active');
+		$('.modal, .placement').addClass('index-ten');
+	};
 
- 	$('.two').focusin(function() {
- 		makeBold('.two');
- 	})
+	function modalOff() {
+		$('.modal, .modal-box, .placement').removeClass('modal-fade-in');
+    	$('.modal, .modal-box, .placement').addClass('modal-fade-out');
+    	$('.modal').toggleClass('modal-active');
+		$('.modal-box').toggleClass('modal-box-active');
+		$('.modal, .placement').removeClass('index-ten');
+	}
 
- 	$('.three').keyup(function() {
-		 makeBold('.three');
- 	})
+	function makeRed() {
+		var allInputs = $(":input");
+		var red = false;
+		for (i=0; i<allInputs.length; i++) {
+			var whatID = "#" + $(allInputs[i]).attr("id")
+			var value = $(whatID).val();
+			if (value === "") {
+				$(whatID).addClass('make-red');
+				red = true;
+			};
+		};	
+		return red;
+	};
 
-	$('.three').focusout(function() {
- 		makeUnBold('.three');
- 	})
+	$('.rectangle-button.submit-button').on("click", function() {
+		console.log(makeRed());
+		if (makeRed() === true) {
+			$('h2.message-title').text("required fields blank");
+			$('p.modal-message').html("Please fill in the red fields. <br> Thank you!")
+			modalOn();
+		} else {
+			$('h2.message-title').text("ha ha ha");
+			$('p.modal-message').html("We now have all the info we want! <br> So long, sucker!")
+			modalOn();
+		}
+		
+	});
 
- 	$('.three').focusin(function() {
- 		makeBold('.three');
- 	})
+	// turn modal off
 
- 	$('.four').keyup(function() {
-		 makeBold('.four');
- 	})
-
-	$('.four').focusout(function() {
- 		makeUnBold('.four');
- 	})
-
- 	$('.four').focusin(function() {
- 		makeBold('.four');
- 	})
-
- 	$('.five').keyup(function() {
-		 makeBold('.five');
- 	})
-
-	$('.five').focusout(function() {
- 		makeUnBold('.five');
- 	})
-
- 	$('.five').focusin(function() {
- 		makeBold('.five');
- 	})
-
- 	$('.six').keyup(function() {
-		 makeBold('.six');
- 	})
-
-	$('.six').focusout(function() {
- 		makeUnBold('.six');
- 	})
-
- 	$('.six').focusin(function() {
- 		makeBold('.six');
- 	})
-
- 	$('.seven').keyup(function() {
-		 makeBold('.seven');
- 	})
-
-	$('.seven').focusout(function() {
- 		makeUnBold('.seven');
- 	})
-
- 	$('.seven').focusin(function() {
- 		makeBold('.seven');
- 	})
-})
+	$('.rectangle-button.modal-button').on("click", function() {
+    	modalOff();
+	});
+});
 
 
 

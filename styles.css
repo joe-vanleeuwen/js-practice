@@ -22,7 +22,11 @@ input:first-child {
 	margin-top: 30px;
 }
 
-hr {
+a {
+	text-decoration: none;
+}
+
+hr.profile-hr {
 	width: 440px;
 	height: 1px;
 	margin: 10px auto 0;
@@ -30,8 +34,13 @@ hr {
 	border-top: 1px solid #363636;
 }
 
-a {
-	text-decoration: none;
+.backdrop {
+	width: 970px;
+	margin: 70px auto;
+	padding-top: 30px;
+	padding: 32px 9px;
+	border-radius: 18px;
+	background: linear-gradient(to top, #365561 1%, #4C7A91 100%);	
 }
 
 .container {
@@ -42,10 +51,11 @@ a {
 
 .form, .profile {
 	height: 500px;
-	margin: 100px 46px 30px 0;
+	margin-bottom: 30px;
 	background: #ECE0B9;
 	display: inline-block;
-	box-shadow: inset 0 4px 2px 1px #C2C099;
+	box-shadow: inset 0 1px 2px 1px #C2C099, 
+					  0px 0px 2px -1px #0B263C;	
 }
 
 .form {
@@ -57,16 +67,16 @@ a {
 	width: 535px;
 	margin-right: 0;
 	border-radius: 0 15px 0 0;
+	float: right;
 }
 
 .submit {
 	height: 100px;
-	margin-bottom: 100px;
-	background: #6B87A0;
+	background: #6592A0;
 	border-radius: 0 0 15px 15px;
-	box-shadow: inset 0 -6px 1px -1px #869DAF;
+	box-shadow: inset 0 -2px 0px 0px #869DAF, 
+					  0px 0px 2px -1px #0B263C;
 }
-
 
 .profile-name {
 	color: #414141;
@@ -77,10 +87,7 @@ a {
 	font-size: 50px;
 }
 
-.profile-email, .profile-cell-number, 
-.profile-occupation, .profile-hobby, 
-.profile-personal-acheivements,
-.profile-bucket-list {
+.profile-info {
 	color: #414141;
 	height: 40px;
 	padding: 10px 20px 5px 50px;
@@ -88,34 +95,59 @@ a {
 	font-size: 20px;
 }
 
+.red {
+	color: red;
+}
+
 span.type {
-	color: #18558B;
+	/*color: #18558B;*/
 	padding-right: 5px;
 	font-variant: small-caps;
 	font-weight: bold;
 }
 
+.first-letter {
+	line-height: 50%;
+}
+
 .last-letter {
 	font-weight: bold;
+	font-size: 150%;
+	line-height: 70%;
+}
+
+.name.last-letter {
+	line-height: 115%;
 }
 
 .rectangle-button {
 	color: #FFF;
-	width: 138px;
-	height: 37px;
-	background: #5C6F86;
-	font-size: .9em;
-	line-height: 2.5em;
-	margin: 30px 25px 0 730px;
+	background: #456D7C;
 	text-align: center;
-	display: inline-block;
 	border-radius: 3px;
 	border: 1px solid #3F3F3F;
 	box-shadow: inset 0px 4px 1px -3px rgb(162, 162, 162);
 	text-shadow: 0 1px 0 #3F3F3F;
 }
 
-	
+.rectangle-button.submit-button {
+	width: 138px;
+	height: 37px;
+	margin: 30px 25px 0 730px;
+	font-size: .9em;
+	line-height: 2.5em;
+	display: inline-block;
+}
+
+.rectangle-button:hover {
+	background: #4F7481;
+}
+
+.make-red {
+	background: rgb(172, 76, 76);
+}
+
+
 
 
 
