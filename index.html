@@ -7,71 +7,126 @@
 	<link rel="stylesheet" type="text/css" href="modal.css">
 </head>
 <body>
-	<div class="backdrop">
+	<div class="backdrop submit-user">
 		<div class="container">
 			<div class="form">
 				<input class="form-name" id="one" placeholder="name">
 				<input class="form-email" id="two" placeholder="email">	
-				<input class="form-cell-number" id="three" placeholder="cell number">	
+				<input class="form-cell-number" id="three" placeholder="cell">	
 				<input class="form-occupation" id="four" placeholder="occupation">
 				<input class="form-hobby" id="five" placeholder="hobby">
-				<input class="form-personal-acheivements" id="six" placeholder="personal acheivement">	
+				<input class="form-personal-achievements" id="six" placeholder="greatest achievement">	
 				<input class="form-bucket-list" id="seven" placeholder="bucket list">	
+				<a href="#" class="rectangle-button submit-button">submit</a>
 			</div>
 			<div class="profile">
 				<div class="profile-name">
-					<span class="name first-letters one"></span
-					><span class="name last-letter one"></span>
+					<span class="first-letters one"></span
+					><span class="last-letter one"></span>
 				</div>
 				<hr class="profile-hr">
 				<div class="profile-info">
 					<span class="type">email:</span>
-					<span class="email first-letters two"></span
-					><span class="email last-letter two"></span>
+					<span class="first-letters two"></span
+					><span class="last-letter two"></span>
 				</div>
 				<div class="profile-info">
-					<span class="type">cell number:</span>
-					<span class="cell-number first-letters three"></span
-					><span class="cell-number last-letter three"></span>
+					<span class="type">cell:</span>
+					<span class="first-letters three"></span
+					><span class="last-letter three"></span>
 				</div>
 				<div class="profile-info">
 					<span class="type">occupation:</span>
-					<span class="occupation first-letters four"></span
-					><span class="occupation last-letter four"></span>
+					<span class="first-letters four"></span
+					><span class="last-letter four"></span>
 				</div>
 				<div class="profile-info">
 					<span class="type">hobby:</span>
-					<span class="hobby first-letters five"></span
-					><span class="hobby last-letter five"></span>
+					<span class="first-letters five"></span
+					><span class="last-letter five"></span>
 				</div>
 				<div class="profile-info">
-					<span class="type">personal acheivement:</span>
-					<span class="personal-acheivements first-letters six"></span
-					><span class="personal-acheivements last-letter six"></span>
+					<span class="type">greatest achievement:</span>
+					<span class="first-letters six"></span
+					><span class="last-letter six"></span>
 				</div>
 				<div class="profile-info">
 					<span class="type">bucket list:</span>
-					<span class="bucket-list first-letters seven"></span
-					><span class="bucket-list last-letter seven"></span>
+					<span class="first-letters seven"></span
+					><span class="last-letter seven"></span>
 				</div>
 			</div>
-			<div class="submit">
-				<a href="#" class="rectangle-button submit-button">submit</a>
+			<div class="page-bottom">
+				<a href="#" class="rectangle-button view-users-button">view users</a>
 			</div>
 
-		</div>
-		<div class="modal"></div>
-		<div class="placement">
-			<div class="modal-box">
-				<h2 class="message-title"></h2>
-				<hr>
-				<p class="modal-message"></p>
-				<a href="#" class="rectangle-button modal-button">ok</a>
+			<!-- <div class="modal"></div>
+			<div class="placement">
+				<div class="modal-box">
+					<h2 class="message-title"></h2>
+					<hr>
+					<p class="modal-message"></p>
+					<a href="#" class="rectangle-button modal-button">ok</a>
+				</div>
+			</div> -->
+			<div class="modal-background">
+				<div class="modal-box ">
+					<h2 class="message-title"></h2>
+					<hr>
+					<p class="modal-message"></p>
+					<a href="#" class="rectangle-button modal-button">ok</a>
+				</div>
+			</div>
+
+
+		</div> <!-- end .container -->
+
+	</div> <!-- end .backdrop -->
+
+	<div class="backdrop view-users hide">
+		<div class="container">
+			<div class="form display-name">	
+				<ul></ul>
+				<a href="#" class="rectangle-button remove-user-button">remove</a>
+			</div>
+			<div class="profile">
+				<div class="profile-name">
+					<span class="name"></span>
+				</div>
+				<hr class="profile-hr">
+				<div class="profile-info">
+					<span class="type">email:</span>
+					<span class="email"></span>
+				</div>
+				<div class="profile-info">
+					<span class="type">cell:</span>
+					<span class="cell"></span>
+				</div>
+				<div class="profile-info">
+					<span class="type">occupation:</span>
+					<span class="occupation"></span>
+				</div>
+				<div class="profile-info">
+					<span class="type">hobby:</span>
+					<span class="hobby"></span>
+				</div>
+				<div class="profile-info">
+					<span class="type">greatest achievement:</span>
+					<span class="greatest-achievement"></span>
+				</div>
+				<div class="profile-info">
+					<span class="type">bucket list:</span>
+					<span class="bucket-list"></span>
+				</div>
+			</div>
+			<div class="page-bottom">
+				<a href="#" class="rectangle-button go-back-button">go back</a>
 			</div>
 
 		</div> <!-- end .container -->
 
 	</div> <!-- end .backdrop -->
+
 
 	<script src="jquery-2.0.3.min.js"></script>
 	<script src="javascript.js"></script>

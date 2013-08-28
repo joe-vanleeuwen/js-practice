@@ -1,7 +1,8 @@
 body {
+	height: 775px;
 	margin: 0;
 	font-family: helvetica, arial, sans-serif;
-	background: linear-gradient(to bottom, #414141 1%, #202020 100%);
+	background: linear-gradient(to bottom, #414141 1%, #202020 100%) no-repeat;
 }
 
 * {
@@ -26,10 +27,23 @@ a {
 	text-decoration: none;
 }
 
+ul {
+	padding-top: 20px;
+	list-style: none;
+}
+
+li {
+	padding: 10px;
+}
+
+li:hover, .bold-name {
+	font-weight: bold;
+}
+
 hr.profile-hr {
 	width: 440px;
 	height: 1px;
-	margin: 10px auto 0;
+	margin: 10px auto 17px;
 	border: 0;
 	border-top: 1px solid #363636;
 }
@@ -49,11 +63,21 @@ hr.profile-hr {
 
 }
 
+.backdrop.view-users {
+	position: relative;
+	top: -764px;
+}
+
+.hide {
+	visibility: hidden;
+}
+
 .form, .profile {
 	height: 500px;
 	margin-bottom: 30px;
 	background: #ECE0B9;
 	display: inline-block;
+	position: relative;
 	box-shadow: inset 0 1px 2px 1px #C2C099, 
 					  0px 0px 2px -1px #0B263C;	
 }
@@ -70,8 +94,9 @@ hr.profile-hr {
 	float: right;
 }
 
-.submit {
+.page-bottom {
 	height: 100px;
+	position: relative;
 	background: #6592A0;
 	border-radius: 0 0 15px 15px;
 	box-shadow: inset 0 -2px 0px 0px #869DAF, 
@@ -81,7 +106,7 @@ hr.profile-hr {
 .profile-name {
 	color: #414141;
 	height: 100px;
-	padding: 20px;
+	padding-top: 20px;
 	text-align: center;
 	line-height: 100px;
 	font-size: 50px;
@@ -93,10 +118,6 @@ hr.profile-hr {
 	padding: 10px 20px 5px 50px;
 	line-height: 27px;
 	font-size: 20px;
-}
-
-.red {
-	color: red;
 }
 
 span.type {
@@ -116,7 +137,7 @@ span.type {
 	line-height: 70%;
 }
 
-.name.last-letter {
+.last-letter.one {
 	line-height: 115%;
 }
 
@@ -130,10 +151,10 @@ span.type {
 	text-shadow: 0 1px 0 #3F3F3F;
 }
 
-.rectangle-button.submit-button {
+.rectangle-button {
 	width: 138px;
 	height: 37px;
-	margin: 30px 25px 0 730px;
+	margin: 30px 0 0 88px;
 	font-size: .9em;
 	line-height: 2.5em;
 	display: inline-block;
@@ -141,6 +162,35 @@ span.type {
 
 .rectangle-button:hover {
 	background: #4F7481;
+}
+
+.rectangle-button.submit-button {
+	border: 1px solid #866E58;
+	background: #A08254;
+}
+
+.rectangle-button.submit-button:hover {
+	background: #B69461;
+}
+
+.rectangle-button.submit-button,
+.rectangle-button.remove-user-button {
+	position: absolute;
+	bottom: 33px;
+}
+
+.rectangle-button.remove-user-button {
+	background: rgb(172, 76, 76);
+}
+
+.rectangle-button.remove-user-button:hover {
+	background: #A13C3C;
+}
+
+.rectangle-button.view-users-button,
+.rectangle-button.go-back-button {
+	position: absolute;
+	right: 30px;
 }
 
 .make-red {
