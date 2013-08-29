@@ -245,6 +245,11 @@ var fakeUserCollection = [
 	}
 ];
 
+function clearLeftNameDisplay() {
+	var ul = $('.display-name ul');
+	ul.html('');
+}
+
 
 
 

@@ -82,7 +82,7 @@ describe("Complete Form", function() {
 		// #5
 		it("should not remove any users since none are selected", function() {
 			// setting the userCollection to the fakeUserCollection
-			userCollection = fakeUserCollection;
+			userCollection = fakeUserCollection.slice();
 			// getting number of users
 			var length = userCollection.length
 			// displaying user names
@@ -106,9 +106,8 @@ describe("Complete Form", function() {
 
 		// #6 this functionality is to be created later
 		it("should move selected user up one position on the list/in the userCollection array", function() {
-
 			// setting the userCollection to the fakeUserCollection
-			userCollection = fakeUserCollection;
+			userCollection = fakeUserCollection.slice();
 			// setting variable to selectedUserIndex for record
 			var position = selectedUserIndex;
 			// running funciton to adjust user position
@@ -126,7 +125,7 @@ describe("Complete Form", function() {
 		// #7 just to verify that the names can be given strong tags
 		it("should make the names\' have strong tags by adding adding them with .html()", function() {
 			// setting the userCollection to the fakeUserCollection
-			userCollection = fakeUserCollection;
+			userCollection = fakeUserCollection.slice();
 			// displaying user names
 			displayUserName(userCollection)
 			// this function used to be a modified verstion of changeNameFontWeight()
@@ -150,7 +149,7 @@ describe("Complete Form", function() {
 		// #8 now to verify the names can have their bold-name class removed
 		it("should remove the strong tags and add them only to current user", function() {
 			// setting the userCollection to the fakeUserCollection
-			userCollection = fakeUserCollection;
+			userCollection = fakeUserCollection.slice();
 			// displaying user names
 			displayUserName(userCollection);
 			// this function used to be a modified verstion of changeNameFontWeight()
@@ -180,7 +179,7 @@ describe("Complete Form", function() {
 		// #9 test for clicking active user again. consoles an error of undefined
 		it("should clear user info form of any content", function () {
 			// setting the userCollection to the fakeUserCollection
-			userCollection = fakeUserCollection;
+			userCollection = fakeUserCollection.slice();
 			// displaying user names
 			displayUserName(userCollection);
 			// display active user info
@@ -199,7 +198,7 @@ describe("Complete Form", function() {
 		// #10 test for removing user
 		it("should remove selected user from userCollection array", function () {
 			// setting the userCollection to the fakeUserCollection
-			userCollection = fakeUserCollection;
+			userCollection = fakeUserCollection.slice();
 			// displaying user names
 			displayUserName(userCollection);
 			selectedUserIndex = 1;
