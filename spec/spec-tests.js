@@ -12,7 +12,7 @@ describe("Complete Form", function() {
 			$('#two').val("jvnlwn@gmail.com");
 
 			// change to "Joe" for green
-			expect(objectifyUserData().name).toBe("Bob");
+			expect(objectifyUserData().name).toBe("Joe");
 		});
 
 		beforeEach(function() {
@@ -28,7 +28,7 @@ describe("Complete Form", function() {
 
 			// expecting true to be true, so not sure if that's an accurate test.
 			// change to false for green
-			expect(validateForm()).toBe(true);
+			expect(validateForm()).toBe(false);
 		});
 
 		beforeEach(function() {
@@ -47,7 +47,7 @@ describe("Complete Form", function() {
 
 			validateForm()
 			// change to true for green
-			expect($('#three').hasClass('make-red')).toBe(false);
+			expect($('#three').hasClass('make-red')).toBe(true);
 		});
 
 
@@ -71,8 +71,8 @@ describe("Complete Form", function() {
 			// displaying all users' names
 			displayUserName(userCollection);
 
-			// change to name for green
-			expect($('.display-name ul li').last().text()).toContain("Bob");
+			// change to "Joe" for green
+			expect($('.display-name ul li').last().text()).toContain("Joe");
 		});
 
 		beforeEach(function() {
@@ -123,9 +123,8 @@ describe("Complete Form", function() {
 			$('input').val('');
 		});
 
-		// #7 just to verify that the names can be given the bold-name class
+		// #7 just to verify that the names can be given strong tags
 		it("should make the names\' have strong tags by adding adding them with .html()", function() {
-
 			// setting the userCollection to the fakeUserCollection
 			userCollection = fakeUserCollection;
 			// displaying user names
@@ -141,7 +140,7 @@ describe("Complete Form", function() {
 			// add strong tags so we know it's removable
 			addStrongTags();
 			// change to '<strong>' + userCollection[0].name + '</strong>' to be green
-			expect($('li').first().html()).toBe(userCollection[0].name);
+			expect($('li').first().html()).toBe('<strong>' + userCollection[0].name + '</strong>');
 		});
 
 		beforeEach(function() {
@@ -171,7 +170,7 @@ describe("Complete Form", function() {
 			$($('li')[selectedUserIndex]).html('<strong>' + userCollection[selectedUserIndex].name + '</strong>');
 
 			// change to '<strong>' + userCollection[selectedUserIndex].name + '</strong>' for green
-			expect($($('li')[selectedUserIndex]).html()).toBe(userCollection[selectedUserIndex].name);
+			expect($($('li')[selectedUserIndex]).html()).toBe('<strong>' + userCollection[selectedUserIndex].name + '</strong>');
 		});
 
 		beforeEach(function() {
@@ -190,7 +189,7 @@ describe("Complete Form", function() {
 			clearInfo();
 
 			// change to "" for green
-			expect($('.name').val()).toBe("Joe");
+			expect($('.name').val()).toBe("");
 		});
 
 		beforeEach(function() {
@@ -208,7 +207,7 @@ describe("Complete Form", function() {
 			$('.rectangle-button.remove-user-button').click();
 
 			// change to "CrazyGuy" for green
-			expect(userCollection[selectedUserIndex].name).toBe("Amy");
+			expect(userCollection[selectedUserIndex].name).toBe("CrazyGuy");
 		});
 
 		beforeEach(function() {
