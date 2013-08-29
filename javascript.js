@@ -20,7 +20,7 @@ $(document).ready(function() {
 	 })
 
 	$('.rectangle-button.submit-button').on("click", function() {
-		if (validateForm() === true) {
+		if (validateForm() === false) {
 			$('h2.message-title').text("required fields blank");
 			$('p.modal-message').html("Please fill in the red fields. <br> Thank you!")
 			modalOn();
@@ -64,14 +64,16 @@ $(document).ready(function() {
    		selectedUserIndex = liClass;
    		// displaying selected user's info on the right by passing <li> class number as argument
    		displayActiveUserInfo(userCollection[liClass]);
-   		// removing bold font-weight from selected <li>
-		changeNameFontWeight();
-		// adding bold font-weight to current selected <li>
-		$(this).addClass("bold-name");
+   		// removing <strong> tags from previously selected <li>
+   		// by simply reloading the 
+   		displayUserName(userCollection);
+		// tried to use $(this) but that wasn't working so used
+		// $($('li')[selectedUserIndex]) instead
+		$($('li')[selectedUserIndex]).html('<strong>' + userCollection[selectedUserIndex].name + '</strong>');
 	});
 
 	// click remove-user-button and remove current user
-	$('.rectangle-button.remove-user-button').on("click", function() {
+	$('.rectangle-button.remove-user-button').click(function() {
 		// pass in global variable for the currently selected user 
 		// so that that user may be removed
 		removeUser(selectedUserIndex);
@@ -114,24 +116,26 @@ function modalOff() {
 	$('.modal-box').removeClass('modal-box-active');
 };
 
-// checkking for content insied the inputs. Will be implemented after
+// function for checkking for content insied the inputs. Will be implemented after
 // the submit button is clicked. Could have used the .forEach here,
 // but at the time I made this function, I didn't know about that method.
+
+// returns true for var valid if all inputs have value, otherwise returns false.
 function validateForm() {
 	var allInputs = $(":input");
-	var red = false;
+	var valid = true;
 	for (i=0; i<allInputs.length; i++) {
 		var whatID = "#" + $(allInputs[i]).attr("id")
 		var value = $(whatID).val();
 		if (value === "") {
 			$(whatID).addClass('make-red');
-			red = true;
+			valid = false;
 		};
 	};	
-	return red;
+	return valid;
 };
 
-// taking input values and placing them inside an object to be pushed
+// function for taking input values and placing them inside an object to be pushed
 // to the userCollection array
 function objectifyUserData() {
 	var nameVal = $('#one').val();
@@ -178,18 +182,8 @@ function displayActiveUserInfo(user) {
 	$('.bucket-list').text(user.bucketList);
 };
 
-// had to set it up in a for loop instead of using .forEach
-// not sure why it wouldn't work to do the .forEach on the var names
-// I created. Just wouldn't work.
-function changeNameFontWeight() {
-	var names = $('li');
-	var x = names.length
-	for (i = 0; i < x; i++) {
-		$(names[i]).removeClass("bold-name");
-	};
-};
-
 // function for removing selected user when remove button is clicked
+// must pass in selectedUserIndex for user
 function removeUser(user) {
 	userCollection.splice(user, 1);
 };
@@ -205,8 +199,51 @@ function clearInfo() {
 	$('.bucket-list').text("");
 };
 
+// function to be defined for moving user
+// up or down in the list/in the userCollection array.
+function moveUserUp() {
 
+};
 
+// for testing purposes onlyz:
+var fakeUserCollection = [
+	{
+		name: "Joe",
+		email: "JOE emailVal",
+		cell: "JOE cellVal",
+		occupation: "JOE occupationVal",
+		hobby: "JOEh obbyVal",
+		greatestAchievement: "JOE greatestAchievementVal",
+		bucketList: "JOE bucketListVal"	
+	},
+	{
+		name: "Amy",
+		email: "AMY emailVal",
+		cell: "AMY cellVal",
+		occupation: "AMY occupationVal",
+		hobby: "AMY hobbyVal",
+		greatestAchievement: "AMY greatestAchievementVal",
+		bucketList: "AMY bucketListVal"	
+	},
+	{
+		name: "CrazyGuy",
+		email: "CRAZYGUY emailVal",
+		cell: "CRAZYGUY cellVal",
+		occupation: "CRAZYGUY occupationVal",
+		hobby: "CRAZYGUY hobbyVal",
+		greatestAchievement: "CRAZYGUY greatestAchievementVal",
+		bucketList: "CRAZYGUY bucketListVal"	
+	},
+	{
+		name: "MasonGenius",
+		email: "MASONGENIUS emailVal",
+		cell: "MASONGENIUS cellVal",
+		occupation: "MASONGENIU SoccupationVal",
+		hobby: "MASONGENIU ShobbyVal",
+		greatestAchievement: "MASONGENIUS greatestAchievementVal",
+		bucketList: "MASONGENIUS bucketListVal"	
+	}
+];
 
 
 
