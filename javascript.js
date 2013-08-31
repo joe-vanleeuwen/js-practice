@@ -1,5 +1,5 @@
 var userCollection = [];
-var selectedUserIndex;
+var selectedUserIndex = userCollection.length;
 
 $(document).ready(function() {
 
@@ -36,11 +36,11 @@ $(document).ready(function() {
 	});
 
 	// turn modal off
-	$('.rectangle-button.modal-button').on("click", function() {
+	$('.rectangle-button.modal-button').click(function() {
     	modalOff();
 	});
 
-	$('.modal-background').on("click", function() {
+	$('.modal-background').click(function() {
     	modalOff();
 	});
 
@@ -81,6 +81,10 @@ $(document).ready(function() {
 		displayUserName(userCollection);
 		// clear info of removed user
 		clearInfo();
+		// don't want the remove button to delete any unselected user,
+		// so selectedUserIndex must be set outside the range of
+		// userCollection
+		// selectedUserIndex = userCollection.length; <-- unComment!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	});
 });
 
@@ -165,15 +169,16 @@ function displayUserName(list) {
 	ul.html('');
 
 	list.forEach(function(user, index) {
-		console.log(user.name);
 		var text = "<li class='" + index +"'>" + user.name + "</li>";
 		ul.append(text);
 	});
+	// remove this line below this to fix !!!!!!!!!!!!!
+	ul.html('');
 };
 
 // display user info on right of selected user
 function displayActiveUserInfo(user) {
-	$('.name').text(user.name);
+	// $('.name').text(user.name);
 	$('.email').text(user.email);
 	$('.cell').text(user.cell);
 	$('.occupation').text(user.occupation);
