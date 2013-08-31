@@ -84,7 +84,7 @@ $(document).ready(function() {
 		// don't want the remove button to delete any unselected user,
 		// so selectedUserIndex must be set outside the range of
 		// userCollection
-		// selectedUserIndex = userCollection.length; <-- unComment!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		selectedUserIndex = userCollection.length;
 	});
 });
 
@@ -172,13 +172,11 @@ function displayUserName(list) {
 		var text = "<li class='" + index +"'>" + user.name + "</li>";
 		ul.append(text);
 	});
-	// remove this line below this to fix !!!!!!!!!!!!!
-	ul.html('');
 };
 
 // display user info on right of selected user
 function displayActiveUserInfo(user) {
-	// $('.name').text(user.name);
+	$('.name').text(user.name);
 	$('.email').text(user.email);
 	$('.cell').text(user.cell);
 	$('.occupation').text(user.occupation);
