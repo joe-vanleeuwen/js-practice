@@ -184,6 +184,32 @@ describe("Form", function() {
 			expect(userCollection.length).toBe(length);
 		});
 	});
+
+	describe("showMessage", function() {
+
+		it("should display the correct error message for the focused-out input", function() {
+
+			
+
+			$('#one, #two, #three, #four, #five, #six, #seven').focusout(function() {
+	 			makeUnBold($(this).attr('id'));
+
+ 				(errorObject.errors).forEach(function(x) {
+ 					(x.(this)).forEach(fucntion(y) {
+ 						if(y[0].inputIDVal === this) {
+ 							$('.message.' + (this).slice(1)).text(y[1].message)
+ 						};
+ 					});
+ 				});
+
+	 				// if($($('input')[inputIndex]).attr('id') === $(this).attr('id')) {
+	 				// 	$('.message.' + (this).slice(1)).text(errorObject.errors[v].inputID[0]message)
+	 				// }
+	 		});
+
+	 		expect()
+		});
+	});
 });
 
 

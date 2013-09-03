@@ -8,10 +8,15 @@ $(document).ready(function() {
 			makeBold($(this).attr('id'));
  	})
 
-	$('#one, #two, #three, #four, #five, #six, #seven')
-		.focusout(function() {
-	 		makeUnBold($(this).attr('id'));
-	 })
+	$('#one, #two, #three, #four, #five, #six, #seven').focusout(function() {
+		makeUnBold($(this).attr('id'));
+
+		var inputID = "#" + $(this).attr('id');
+
+		// displaying an individual error
+		// passing in validateForm() which will return the errorObject
+		displayErrors(inputID, validateForm(), "one");
+	});
 
  	$('#one, #two, #three, #four, #five, #six, #seven')
 	 	.focusin(function() {
@@ -20,7 +25,7 @@ $(document).ready(function() {
 	 })
 
 	$('.rectangle-button.submit-button').on("click", function() {
-		if (validateForm() === false) {
+		if (!displayErrors("-filler-", validateForm(), "all")) {
 			$('h2.message-title').text("required fields blank");
 			$('p.modal-message').html("Please fill in the red fields. <br> Thank you!")
 			modalOn();
@@ -59,16 +64,21 @@ $(document).ready(function() {
 	// for liClass. Which is odd, since the numeric value is actually the class of the clicked <li>,
 	// so you'd expect console to log a string i.e. "0". I must not understand how these things work.
 	$('.display-name').on('click', 'li', function() {
+		// removing strong tags and user-active class form previously active user
+		deselect($($('li')[selectedUserIndex]));
 		// setting liClass to clicked <li> class which will give a number
-   		var liClass = $(this).attr("class");
+   		var liClass = $(this).attr("id");
+
    		selectedUserIndex = liClass;
+   		// adding class
+   		// $($('li')[selectedUserIndex]).text("user-active")
    		// displaying selected user's info on the right by passing <li> class number as argument
    		displayActiveUserInfo(userCollection[liClass]);
    		// removing <strong> tags from previously selected <li>
    		// by simply reloading the 
-   		displayUserName(userCollection);
 		// tried to use $(this) but that wasn't working so used
 		// $($('li')[selectedUserIndex]) instead
+		$($('li')[selectedUserIndex]).addClass("user-active")
 		$($('li')[selectedUserIndex]).html('<strong>' + userCollection[selectedUserIndex].name + '</strong>');
 	});
 
@@ -84,6 +94,7 @@ $(document).ready(function() {
 		// don't want the remove button to delete any unselected user,
 		// so selectedUserIndex must be set outside the range of
 		// userCollection
+		// THIS IS NOT WORKING AT PRESENT WITH THE ABOVE FUNCTION CLICKING USER NAME!!!
 		selectedUserIndex = userCollection.length;
 	});
 });
@@ -125,18 +136,69 @@ function modalOff() {
 // but at the time I made this function, I didn't know about that method.
 
 // returns true for var valid if all inputs have value, otherwise returns false.
+// function validateForm() {
 function validateForm() {
-	var allInputs = $(":input");
-	var valid = true;
-	for (i=0; i<allInputs.length; i++) {
-		var whatID = "#" + $(allInputs[i]).attr("id")
-		var value = $(whatID).val();
+	var errorObject = {};
+	errorObject.errors = [];
+	$("input").each(function(i) {
+		// getting input id
+		var inputID = "#" + $($("input")[i]).attr("id")
+		// using placeholder for error message that checks for "" in input
+		var inputPlaceholder = $($("input")[i]).attr("placeholder")
+		// value is what the user entered in the input
+		var value = $(inputID).val();
+		// creating an error object for each input (just for convenience)
+		errorObject.errors.push({});
+		// defaulting message to clear
+		var message = "";
+		// makeRed is for the submit button to make inputs with unacceptable input values red.
+		var makeRed = '';
+		// checking for input with no value
 		if (value === "") {
-			$(whatID).addClass('make-red');
-			valid = false;
+			message = inputPlaceholder + " required";
+		} else if (inputID === "#three") {
+			message = validateCellNum(value, inputID, errorObject);
 		};
-	};	
-	return valid;
+		if (message !== "") {
+			makeRed = 'make-red';
+		};
+		errorObject.errors[i].formInput = {
+			inputID: inputID,
+			message: message,
+			makeInputRed: makeRed
+		};
+	}); 
+	return errorObject;
+};
+
+function validateCellNum(value, inputID, errorObject) {
+	var cellNum = [];
+	var message = "";
+	for(i = 0; i < value.length; i++) {
+		var digit = parseInt(value[i]);
+		if(!isNaN(digit)) {
+			// passing in the string value
+			cellNum.push(value[i]);
+		};
+	};
+	if (cellNum.length === 10) {
+		// creating new display fromat for cell number
+		var areaCode = cellNum.slice(0, 3);
+		var firstThree = cellNum.slice(3, 6);
+		var lastFour = cellNum.slice(6, 10);
+		cellNum = "(" + areaCode.slice().join("") + ") " + firstThree.slice().join("") + "-" + lastFour.slice().join("");
+		// updating input value to new format
+		$(inputID).val(cellNum);
+		// displaying new format on right side of form
+		$('.first-letters.three').text(cellNum);
+		
+	} else if (cellNum.length === 7) {
+		message = "area code required";
+	} else {
+		message = "invalid cell number";
+	}
+	// return appropriate message
+	return message
 };
 
 // function for taking input values and placing them inside an object to be pushed
@@ -169,7 +231,9 @@ function displayUserName(list) {
 	ul.html('');
 
 	list.forEach(function(user, index) {
-		var text = "<li class='" + index +"'>" + user.name + "</li>";
+		var text = "<li id='" + index +"'>" + user.name + "</li>";
+		// var text = "<li id='" + index +"'>" + user.name + 
+		// "<a href='#' class='rectangle-button remove-user-button'>remove</a></li>";
 		ul.append(text);
 	});
 };
@@ -191,6 +255,11 @@ function removeUser(user) {
 	userCollection.splice(user, 1);
 };
 
+
+function deselect(user) {
+	user.html(userCollection[selectedUserIndex].name);
+   	user.removeClass("user-active")
+}
 // function for clearing right side of info after user has been removed
 function clearInfo() {
 	$('.name').text("");
@@ -201,6 +270,30 @@ function clearInfo() {
 	$('.greatest-achievement').text("");
 	$('.bucket-list').text("");
 };
+
+function displayErrors(inputID, errorObject, oneOrAll) {
+	if (oneOrAll === "one") {
+		(errorObject.errors).forEach(function(x) {
+			if(x.formInput.inputID === inputID) {
+				// (inputID).slice(1) takes the '#' off the beginning of the id
+				// so it can be converted to a class
+				$('.message.' + (inputID).slice(1)).text(x.formInput.message);
+			};
+		});
+	};
+	if (oneOrAll === "all") {
+		var inputsAcceptable = true;
+		(errorObject.errors).forEach(function(x) {
+			$('.message.' + (x.formInput.inputID).slice(1)).text(x.formInput.message);
+			$(x.formInput.inputID).addClass(x.formInput.makeInputRed);
+			if(x.formInput.makeInputRed === 'make-red') {
+				inputsAcceptable = false;
+			};
+		});
+		return inputsAcceptable;
+	};
+};
+
 
 // function to be defined for moving user
 // up or down in the list/in the userCollection array.
@@ -213,7 +306,7 @@ var fakeUserCollection = [
 	{
 		name: "Joe",
 		email: "JOE emailVal",
-		cell: "JOE cellVal",
+		cell: "(123) 456-7890",
 		occupation: "JOE occupationVal",
 		hobby: "JOEh obbyVal",
 		greatestAchievement: "JOE greatestAchievementVal",
@@ -222,7 +315,7 @@ var fakeUserCollection = [
 	{
 		name: "Amy",
 		email: "AMY emailVal",
-		cell: "AMY cellVal",
+		cell: "(123) 456-7890",
 		occupation: "AMY occupationVal",
 		hobby: "AMY hobbyVal",
 		greatestAchievement: "AMY greatestAchievementVal",
@@ -231,7 +324,7 @@ var fakeUserCollection = [
 	{
 		name: "CrazyGuy",
 		email: "CRAZYGUY emailVal",
-		cell: "CRAZYGUY cellVal",
+		cell: "(123) 456-7890",
 		occupation: "CRAZYGUY occupationVal",
 		hobby: "CRAZYGUY hobbyVal",
 		greatestAchievement: "CRAZYGUY greatestAchievementVal",
@@ -240,7 +333,7 @@ var fakeUserCollection = [
 	{
 		name: "MasonGenius",
 		email: "MASONGENIUS emailVal",
-		cell: "MASONGENIUS cellVal",
+		cell: "(123) 456-7890",
 		occupation: "MASONGENIU SoccupationVal",
 		hobby: "MASONGENIU ShobbyVal",
 		greatestAchievement: "MASONGENIUS greatestAchievementVal",
@@ -253,6 +346,8 @@ function clearLeftNameDisplay() {
 	ul.html('');
 }
 
+userCollection = fakeUserCollection.slice();
+displayUserName(userCollection)
 
 
 
